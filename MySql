@@ -13,6 +13,13 @@ CREATE TABLE IF NOT EXISTS artists (
     country VARCHAR(100),
     genre VARCHAR(100)
 );
+INSERT INTO artists (artist_name, country, genre) VALUES ('John Doe', 'USA', 'Rock');
+INSERT INTO artists (artist_name, country, genre) VALUES ('Amayra', 'India', 'Pop Music');
+INSERT INTO artists (artist_name, country, genre) VALUES ('Kate Bush', 'Britain', 'Electronic Music');
+INSERT INTO artists (artist_name, country, genre) VALUES ('Elton John', 'Austrailia', 'Jazz');
+INSERT INTO artists (artist_name, country, genre) VALUES ('S.P Balasubramanyam', 'India', 'Classical Music');
+INSERT INTO artists (artist_name, country, genre) VALUES ('Johan Liebert', 'Germany', 'Heavy Metal');
+INSERT INTO artists (artist_name, country, genre) VALUES ('Yagami Hirata', 'Japan', 'Rock');
 
 -- Table for albums
 CREATE TABLE IF NOT EXISTS albums (
@@ -22,6 +29,13 @@ CREATE TABLE IF NOT EXISTS albums (
     artist_id INT,
     FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
 );
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Greatest Hits', 2020, 1);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Endgame', 2018, 2);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Paint it Black', 2003, 3);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('God', 2022, 4);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Mate Rani', 1990, 5);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Monster', 2002, 6);
+INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Shinozagawa', 2020, 7);
 
 -- Table for tracks
 CREATE TABLE IF NOT EXISTS tracks (
@@ -31,12 +45,22 @@ CREATE TABLE IF NOT EXISTS tracks (
     album_id INT,
     FOREIGN KEY (album_id) REFERENCES albums(album_id)
 );
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('One', '00:03:35', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Far Away', '00:03:30', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Blackened', '00:03:30', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Envy', '00:03:30', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Mate Rani', '00:03:30', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Enemy', '00:03:30', 1);
+INSERT INTO tracks (track_name, duration, album_id) VALUES ('Tetsu', '00:03:30', 1);
+
 
 -- Table for playlists
 CREATE TABLE IF NOT EXISTS playlists (
     playlist_id INT AUTO_INCREMENT PRIMARY KEY,
     playlist_name VARCHAR(100) NOT NULL
 );
+INSERT INTO playlists (playlist_name) VALUES ('My Favorites');
+INSERT INTO playlists(playlist_name) VALUES ('Sad Music');
 
 -- Table for playlist_tracks (many-to-many relationship between playlists and tracks)
 CREATE TABLE IF NOT EXISTS playlist_tracks (
@@ -46,9 +70,11 @@ CREATE TABLE IF NOT EXISTS playlist_tracks (
     FOREIGN KEY (track_id) REFERENCES tracks(track_id),
     PRIMARY KEY (playlist_id, track_id)
 );
-INSERT INTO artists (artist_name, country, genre) VALUES ('John Doe', 'USA', 'Rock');
-INSERT INTO albums (album_name, release_year, artist_id) VALUES ('Greatest Hits', 2020, 1);
-INSERT INTO tracks (track_name, duration, album_id) VALUES ('Song 1', '00:03:30', 1);
-INSERT INTO playlists (playlist_name) VALUES ('My Favorites');
+-- Insert a track into a playlist
 INSERT INTO playlist_tracks (playlist_id, track_id) VALUES (1, 1);
-INSERT INTO artists (artist_name, country, genre) VALUES ('Justin Timberlake', 'USA', 'Rhythm');
+INSERT INTO playlist_tracks (playlist_id, track_id) VALUES (1, 2);
+INSERT INTO playlist_tracks (playlist_id, track_id) VALUES (2, 3);
+
+
+
+
